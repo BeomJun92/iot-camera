@@ -1,0 +1,1 @@
+cmd_Release/camera.node := ./gyp-mac-tool flock ./Release/linker.lock c++ -bundle -Wl,-search_paths_first -mmacosx-version-min=10.5 -arch x86_64 -L./Release -L/usr/local/lib  -o Release/camera.node Release/obj.target/camera/src/native/camera.o -undefined dynamic_lookup -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_video -lopencv_ml

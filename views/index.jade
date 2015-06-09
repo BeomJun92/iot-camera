@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+	#container
+		#heading
+			button#capture(onclick="capture();")
+				&#x2727;
+			button#play(onclick="openCamera();")
+				&#9658;
+			button#pause(onclick="closeCamera();")
+				&#10074;&#10074;
+		canvas#stream(style="resize:both;")
+		#captures
+	a#acapture(href="" style="display:none;" download="")
+	script(src='/javascripts/cam.js')
