@@ -20,11 +20,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+// app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -148,75 +150,6 @@ wss.on('connection', function (ws) {
 // for cam
 
 
-// for arduino
-var SerialPort = require("serialport").SerialPort;
-var serialPort = new SerialPort("/dev/cu.usbmodem1411", {
-  baudrate: 9600
-});
-
-
-var cleanData = '';
-var readData = '';
-var arduino_data;
-
-serialPort.on("open", function () {
-  console.log('open');
-
-  serialPort.on('data', function(data) {
-    readData += data.toString();
-    if(readData.indexOf('!') >= 0 && readData.indexOf('$') >= 0){
-      cleanData = readData.substring(readData.indexOf('!')+1, readData.indexOf('$') );
-      arduino_data = cleanData.split(":");
-      console.log(arduino_data);
-      controlArduino();
-      readData = '';
-    }
-  });
-  
-  setInterval(function() {
-    serialPort.write("1", function(err, results) {
-    });
-  }, 3000);
-});
-
-function controlArduino(){
-  if(arduino_data[3]=="0"){
-    sendmail();
-  }
-}
-
-var nodemailer = require('nodemailer');
-  // create reusable transporter object using SMTP transport
-  var transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-          user: 'serr92b@gmail.com',
-          pass: 'qjawns45'
-      }
-  });
-
-function sendmail(){
-  // NB! No need to recreate the transporter object. You can use
-  // the same transporter object for all e-mails
-
-  // setup e-mail data with unicode symbols
-  var mailOptions = {
-      from: 'Javis <jun@javis.com>', // sender address
-      to: 'serr92b@gmail.com', // list of receivers
-      subject: 'Home Warning!', // Subject line
-      text: 'Some one is entering your home!', // plaintext body
-      html: '<b>Some one is entering your home!</b>' // html body
-  };
-
-  // send mail with defined transport object
-  transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-          return console.log(error);
-      }
-      console.log('Message sent: ' + info.response);
-
-  });
-}
 
 
 module.exports = app;

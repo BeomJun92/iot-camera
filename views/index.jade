@@ -2,15 +2,151 @@ extends layout
 
 block content
 
-	#container
-		#heading
-			button#capture(onclick="capture();")
-				&#x2727;
-			button#play(onclick="openCamera();")
-				&#9658;
-			button#pause(onclick="closeCamera();")
-				&#10074;&#10074;
-		canvas#stream(style="resize:both;")
-		#captures
-	a#acapture(href="" style="display:none;" download="")
+	header
+		h1.title Jun Home Controller
+	section
+		.inner-col
+			.container
+				#thermo-container
+					h1 Temperature
+
+					.degree-container
+						.de
+							.den
+								.dene
+									.denem
+										.deneme
+											span.data 24
+											span.dot .0
+											strong &deg;
+
+				#humidity-container
+					h1 Humidity
+					.degree-container
+						.de
+							.den
+								.dene
+									.denem
+										.deneme
+											span.data 22
+											span.dot .0
+											strong %
+
+			.container
+				#light-container
+					h1 Illuminity
+					.degree-container
+						.de
+							.den
+								.dene
+									.denem
+										.deneme
+											span.data 33
+											span.dot .0
+											strong %
+
+				#switch-container
+					.switch-inner
+						.onoffswitch
+							input#switch_light1.onoffswitch-checkbox(type="checkbox" name="onoffswitch")
+							label.onoffswitch-label(for="switch_light1")
+								span.onoffswitch-inner
+								span.onoffswitch-switch
+
+						.onoffswitch
+							input#switch_light2.onoffswitch-checkbox(type="checkbox" name="onoffswitch")
+							label.onoffswitch-label(for="switch_light2")
+								span.onoffswitch-inner
+								span.onoffswitch-switch
+
+						.onoffswitch
+							input#switch_light3.onoffswitch-checkbox(type="checkbox" name="onoffswitch")
+							label.onoffswitch-label(for="switch_light3")
+								span.onoffswitch-inner
+								span.onoffswitch-switch
+
+						.onoffswitch
+							input#switch_power.onoffswitch-checkbox(type="checkbox" name="onoffswitch")
+							label.onoffswitch-label(for="switch_power")
+								span.onoffswitch-inner
+								span.onoffswitch-switch
+
+						.switchlabel
+							span Light1
+							span Light2
+							span Light3
+							span Power
+			script(type='text/javascript').
+
+				$('.onoffswitch-checkbox').on("change", function() {
+					console.log($(this));
+					console.log($('.onoffswitch-checkbox').index($(this)));
+					console.log($(this).is(":checked"));
+					sendSignalToArduino( $('.onoffswitch-checkbox').index($(this)), $(this).is(":checked") );
+
+
+				});
+
+				function sendSignalToArduino(i, bool){
+					switch(i){
+					case 0:
+						if(bool)
+							sendajax("/led1on");
+						else
+							sendajax("/led1off");
+						break;
+					case 1:
+						if(bool)
+							sendajax("/led2on");
+						else
+							sendajax("/led2off");
+						break;
+					case 2:
+						if(bool)
+							sendajax("/led3on");
+						else
+							sendajax("/led3off");
+						break;
+					case 3:
+						if(bool)
+							sendajax("/poweron");
+						else
+							sendajax("/poweroff");
+						break;
+					}
+				}
+
+				function sendajax(url){
+					$.ajax({
+						type: "get",
+						url: url
+					});
+				}
+
+				setInterval(setdata, 1000);
+
+				function setdata(){
+					$.getJSON('/arduinodata', function(data){
+
+						$('#thermo-container .data').text(parseInt(data['temperature']));
+						$('#humidity-container .data').text(parseInt(data['humidity']));
+						$('#light-container .data').text(parseInt( (1-data['illuminity'])*100 ));
+						if(data['obstacle'] == "0")	alert("Warning! Something is detected!");
+					});
+				}
+
+			#cam-container
+				#heading
+					button#capture(onclick="capture();")
+						&#x2727;
+					button#play(onclick="openCamera();")
+						&#9658;
+					button#pause(onclick="closeCamera();")
+						&#10074;&#10074;
+				canvas#stream(style="resize:both;")
+				h1 Capture
+				#captures
+			a#acapture(href="" style="display:none;" download="")
+
+
 	script(src='/javascripts/cam.js')

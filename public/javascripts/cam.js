@@ -1,9 +1,20 @@
 var ws = null;
 var stream = document.getElementById("stream");
-var container = document.getElementById("container");
+var container = document.getElementById("cam-container");
 var context = stream.getContext("2d");
 var image = null;
 var imageEle = "<div id=\"##id\" class=\"captured-frame\"><img class=\"frame-image\" src=\"##src\" /><div class=\"frame-title\"><a href=\"##href\" download=\"##title\">##title</a></div></div>";
+var mobile = false;
+
+$(window).resize(function() {
+    if( $(this).width() > 414 )
+        mobile = false;
+    else
+        mobile = true;
+});
+
+if( $(window).width() <= 414) 
+    mobile = true;
 
 function adjustSize(width, height) {
     stream.width = width;
@@ -12,7 +23,7 @@ function adjustSize(width, height) {
     stream.style.height = height + "px";
     container.style.width = width + "px";
     container.style.height = height + "px";
-    adjustPos();
+    // adjustPos();
 }
 
 function adjustPos() {
@@ -30,7 +41,7 @@ function adjustPos() {
 
 $(document).ready(function () {
 
-    adjustPos();
+    // adjustPos();
 
 
     $("#pause").hide();
@@ -44,7 +55,10 @@ var currentFps = 0,
 function drawFrame(image) {
     var img = new Image();
     img.onload = function () {
-        context.drawImage(img, 0, 0);
+        if(!mobile)
+            context.drawImage(img, 0, 0);
+        else
+            context.drawImage(img, 0, 0, 640, 360, 0, 0, 320, 180 );
     };
     img.src = image;
 }
@@ -70,7 +84,10 @@ function openCamera() {
         var data = JSON.parse(message.data);
         switch (data.type) {
         case "size":
-            adjustSize(data.width, data.height);
+            if(!mobile)
+                adjustSize(data.width, data.height);
+            else
+                adjustSize(320, 180);
             break;
         case "frame":
             if (!sizeReceived) {

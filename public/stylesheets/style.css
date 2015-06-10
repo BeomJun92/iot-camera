@@ -1,54 +1,384 @@
+@import url(http://fonts.googleapis.com/css?family=Dosis:200,400,500,600);
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 0;
+	margin: 0;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: #fff;
 }
-div#container {
-  width: 640px;
-  height: 360px;
-  box-shadow: 1px 1px 100px #777;
+
+h1 {
+	margin: 0;
+	font-family: 'Apple SD';
+	text-align: center;
 }
+
+header {
+	height: 120px;
+	width: 100%;
+	background-color: #363636;
+}
+
+header h1 {
+	margin: 0;
+	color: #fff;
+	font-size: 50px;
+	padding-top: 25px;
+}
+
+section {
+	background-color: #fff;
+}
+
+section .inner-col {
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+
+section .container {
+	width: 100%;
+	height: 300px;
+	position: relative;
+}
+
+section .container > div {
+	width: 50%;
+	height: 100%;
+}
+
+section .container > div:first-child {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+section .container > div:last-child {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.degree-container {
+	width: 300px; margin: 10px auto 0;	
+}
+
+.de .den, .de .dene, .de .denem, .de .deneme { position: absolute;  left: 50%; top: 50%; }
+.de {
+	position: relative;
+	width: 240px;
+	height: 240px;
+	border-radius: 100%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+	background-color: transparent;
+	margin: 0 auto;
+}
+.den {
+	position: relative;
+	width: 210px;
+	height: 210px;
+	margin: -105px 0 0 -105px;
+	border-radius: 100%;
+	box-shadow: inset 0 2px 10px rgba(0, 0, 0, .5), 0 2px 20px rgba(255, 255, 255, 1);
+	background: #df3341;
+	background: -moz-linear-gradient(left, #df3341 0%, #d4f355 50%, #61c0ec 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#df3341), color-stop(50%,#d4f355), color-stop(100%,#61c0ec));
+	background: -webkit-linear-gradient(left, #df3341 0%,#d4f355 50%,#61c0ec 100%);
+	background: linear-gradient(to right, #df3341 0%,#d4f355 50%,#61c0ec 100%);
+	position:relative;
+}
+.dene {
+	width: 180px;
+	height: 180px;
+	margin: -90px 0 0 -90px;
+	border-radius: 100%;
+	box-shadow: inset 0 2px 2px rgba(255, 255, 255, .4), 0 3px 13px rgba(0, 0, 0, .85);
+	background: #f2f6f5;
+	background: -moz-linear-gradient(top, #f2f6f5 0%, #cbd5d6 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f6f5), color-stop(100%, #cbd5d6));
+	background: -webkit-linear-gradient(top, #f2f6f5 0%, #cbd5d6 100%);
+	background: -o-linear-gradient(top, #f2f6f5 0%, #cbd5d6 100%);
+}
+.denem {
+	width: 160px;
+	height: 160px;
+	margin: -80px 0 0 -80px;
+	border-radius: 100%;
+	background: #cbd5d6;
+	background: -moz-linear-gradient(top, #cbd5d6 0%, #f2f6f5 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbd5d6), color-stop(100%, #f2f6f5));
+	background: -webkit-linear-gradient(top, #cbd5d6 0%, #f2f6f5 100%);
+}
+
+.deneme {
+	padding: 3px 10px 0 10px;
+	width: 120px;
+	height: 137px;
+	display: inline-block;
+	margin: -70px 0 0 -70px;
+	color: #555;
+	text-shadow: 1px 1px 1px white;
+	font-family: 'Dosis';
+	font-size: 100px;
+	font-weight: 400;
+	text-align: center;
+}
+.deneme span.dot { font-size: 30px; font-weight: 200; }
+.deneme strong { position: absolute; right: 10px; top: 25px; font-size: 34px; }
+
+
+
+div#cam-container {
+	width: 680px;
+	height: 360px;
+	margin: 0 auto;
+}
+
 div#heading {
-  padding: 10px 20px 10px 20px;
-  background-color: #111;
-  text-align: right;
+	padding: 10px 20px 10px 20px;
+	background-color: #111;
+	text-align: right;
 }
+
 button {
-  background: rgba(0,0,0,0);
-  color: #fff;
-  border-style: none;
+	background: rgba(0,0,0,0);
+	color: #fff;
+	border-style: none;
 }
+
 div#captures {
-  height: 100%;
-  right: 0px;
-  top: 0px;
-  background-color: #ccc;
-  width: 300px;
-  position: absolute;
-  overflow-y: scroll;
+	height: 100%;
+	right: 0px;
+	top: 0px;
+	background-color: #ccc;
+	width: 100%;
+	margin-top: 30px;
+	/*position: absolute;*/
+	overflow-y: scroll;
 }
+
 div.captured-frame {
-  width: 250px;
-  height: 140px;
-  margin: 10px 25px 10px 25px;
-  box-shadow: 0px 0px 50px #111;
+	width: 250px;
+	height: 140px;
+	margin: 10px 25px 10px 25px;
+	box-shadow: 0px 0px 50px #111;
 }
+
 div.captured-frame img {
-  width: 250px;
-  height: 140px;
-  background-color: #444;
-  border-style: none;
+	width: 250px;
+	height: 140px;
+	background-color: #444;
+	border-style: none;
 }
+
 div.captured-frame .frame-title {
-  width: 210px;
-  height: 20px;
-  padding: 10px 20px 10px 20px;
-  background: #111;
-  position: relative;
-  bottom: 40px;
-  color: rgba(0,0,0,0.5);
+	width: 210px;
+	height: 20px;
+	padding: 10px 20px 10px 20px;
+	background: #111;
+	position: relative;
+	bottom: 40px;
+	color: rgba(0,0,0,0.5);
+}
+
+canvas#stream {
+	width: 640px;
+	height: 480px;
+
 }
 a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 12px;
+	text-decoration: none;
+	color: #fff;
+	font-size: 12px;
 }
+
+.switch-inner {
+	padding: 40px 0px 0px 90px;
+
+}
+
+.switchlabel {
+	position: absolute;
+	right: 110px;
+	top: 35px;
+	font-family: 'Apple SD';
+}
+
+.switchlabel span {
+	display: block;
+	font-size: 19px;
+	margin: 21px;
+}
+
+
+.onoffswitch {
+	margin: 10px;
+	position: relative; width: 90px;
+	-webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+	display: none;
+}
+.onoffswitch-label {
+	display: block; overflow: hidden; cursor: pointer;
+	border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+	display: block; width: 200%; margin-left: -100%;
+	-moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+	-o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+	display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+	font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+	content: "ON";
+	padding-left: 10px;
+	background-color: #0CE84A; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+	content: "OFF";
+	padding-right: 10px;
+	background-color: #EEEEEE; color: #999999;
+	text-align: right;
+}
+.onoffswitch-switch {
+	display: block; width: 18px; margin: 6px;
+	background: #FFFFFF;
+	border: 2px solid #999999; border-radius: 20px;
+	position: absolute; top: 0; bottom: 0; right: 56px;
+	-moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+	-o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+	margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+	right: 0px; 
+}
+
+
+
+@media screen and (max-width: 414px) {
+	header {
+		height: 80px;
+
+	}
+
+	header h1 {
+		font-size: 36px;
+		padding-top: 15px;
+	}
+
+	section {
+		background-color: #fff;
+	}
+
+	section .inner-col {
+		width: 320px;
+		padding-top: 30px;
+	}
+
+	section .container {
+		width: 100%;
+		height: inherit;
+		  margin: 25px auto;
+	}
+
+	section .container > div {
+		width: 100%;
+		height: 100%;
+	}
+
+	section .container > div:first-child {
+		position: inherit;
+		left: inherit;
+		top: inherit;
+	}
+
+	section .container > div:last-child {
+		position: inherit;
+		right: inherit;
+		top: inherit;
+	}
+
+	div#cam-container {
+		width: 320px;
+		height: 180px;
+		margin: 0 auto;
+	}
+
+	div#heading {
+		padding: 10px 20px 10px 20px;
+		background-color: #111;
+		text-align: right;
+	}
+
+	button {
+		background: rgba(0,0,0,0);
+		color: #fff;
+		border-style: none;
+	}
+
+	div#captures {
+		height: 100%;
+		right: 0px;
+		top: 0px;
+		background-color: #ccc;
+		width: 300px;
+		/*position: absolute;*/
+		overflow-x: scroll;
+	}
+
+	div.captured-frame {
+		width: 250px;
+		height: 140px;
+		margin: 10px 25px 10px 25px;
+		box-shadow: 0px 0px 50px #111;
+	}
+
+	div.captured-frame img {
+		width: 250px;
+		height: 140px;
+		background-color: #444;
+		border-style: none;
+	}
+
+	div.captured-frame .frame-title {
+		width: 210px;
+		height: 20px;
+		padding: 10px 20px 10px 20px;
+		background: #111;
+		position: relative;
+		bottom: 40px;
+		color: rgba(0,0,0,0.5);
+	}
+
+	canvas#stream {
+		width: 320px;
+		height: 180px;
+
+	}
+
+	.switch-inner {
+		padding: 0;
+  		padding-left: 45px;
+	}
+
+	.switchlabel {
+		  position: absolute;
+		  right: 66px;
+		  top: -15px;
+	}
+
+	.switchlabel span {
+		display: block;
+		font-size: 19px;
+		margin: 21px;
+	}
+
+
+}
+
